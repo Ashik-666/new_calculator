@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .inputs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 60px;
+            padding: 10px;
+            font-size: 1.5rem;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 0 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #5c6bc0;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .btn {
+            background-color: #5c6bc0;
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #3949ab;
+        }
+
+        .btn:active {
+            background-color: #3f51b5;
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h2 id="result">0</h2>
+        <div class="inputs">
+            <input type="text" id="Num1" class="input-field" placeholder="0">
+            <input type="text" id="Num2" class="input-field" placeholder="0">
+        </div>
+        <div class="buttons">
+            <button class="btn" onclick="calculate('+')">+</button>
+            <button class="btn" onclick="calculate('-')">-</button>
+            <button class="btn" onclick="calculate('*')">*</button>
+            <button class="btn" onclick="calculate('/')">/</button>
+            <button class="btn" onclick="clearResult()">C</button>
+            <button class="btn" onclick="calculate('=')">=</button>
+        </div>
+    </div>
+
+    <script>
+        function calculate(op) {
+            let num1 = parseFloat(document.getElementById("Num1").value);
+            let num2 = parseFloat(document.getElementById("Num2").value);
+            let result;
+
+            if (op === '+') result = num1 + num2;
+            else if (op === '-') result = num1 - num2;
+            else if (op === '*') result = num1 * num2;
+            else if (op === '/') result = num2 !== 0 ? num1 / num2 : 'Error';
+            else if (op === '=') result = num2 ? num1 : 'Error';
+
+            document.getElementById("result").textContent = result || '0';
+        }
+
+        function clearResult() {
+            document.getElementById("Num1").value = '';
+            document.getElementById("Num2").value = '';
+            document.getElementById("result").textContent = '0';
+        }
+    </script>
+    
+</body>
+</html>
